@@ -369,6 +369,8 @@ public class ActVideoTrimmer extends LocalizationActivity {
             seekbar.setMaxStartValue((float) maxToGap);
             seekbar.setGap(minFromGap).apply();
             lastMaxValue = maxToGap;
+            seekbar.setMaxValue(maxToGap);
+            seekbarController.setMaxValue(maxToGap);
         } else {
             seekbar.setGap(2).apply();
             lastMaxValue = totalDuration;
@@ -690,12 +692,14 @@ public class ActVideoTrimmer extends LocalizationActivity {
     }
 
     private boolean checkStoragePermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            return checkPermission(
+                    Manifest.permission.READ_MEDIA_VIDEO, Manifest.permission.ACCESS_MEDIA_LOCATION);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             return checkPermission(
                     Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.ACCESS_MEDIA_LOCATION);
         } else
             return checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE);
-
     }
 
     private boolean checkPermission(String... permissions) {

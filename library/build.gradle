@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
+apply plugin: 'org.jetbrains.kotlin.android'
 android {
-    compileSdkVersion 32
-    buildToolsVersion "31.0.0"
+    compileSdkVersion 33
 
     packagingOptions {
         pickFirst 'lib/x86/libc++_shared.so'
@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 32
+        targetSdkVersion 33
         consumerProguardFiles "consumer-rules.pro"
 
         ndkVersion '22.1.7171670'
@@ -46,6 +46,7 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer:2.17.1'
     implementation 'com.arthenica:mobile-ffmpeg-min:4.4.LTS'
     implementation 'com.github.bumptech.glide:glide:4.13.1'
+    implementation 'androidx.core:core-ktx:1.7.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.1'
     implementation 'com.akexorcist:localization:1.2.9'
     implementation 'com.google.code.gson:gson:2.9.0'
